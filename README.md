@@ -1,2 +1,2 @@
-# SCRIPTS-FOR-AUATOMATION
+# SCRIPTS-FOR-AUTOMATION
 creating automation scripts 
