@@ -1,0 +1,176 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09", 
+    "Resources": {
+        "TestVolume1": {
+            "Type": "AWS::EC2::Volume", 
+            "Properties": {
+                "AvailabilityZone": "us-east-1c", 
+                "Tags": [
+                    {
+                        "Key": "LastAttachInstance", 
+                        "Value": "i-0b069333bc409c5a5"
+                    }, 
+                    {
+                        "Key": "LastAttachTime", 
+                        "Value": "2017-05-01T15:28:34.000Z"
+                    }, 
+                    {
+                        "Key": "Name", 
+                        "Value": "TestVolume1"
+                    }, 
+                    {
+                        "Key": "Owner", 
+                        "Value": "vinodh2308@gmail.com"
+                    }
+                ], 
+                "VolumeType": "gp2", 
+                "AutoEnableIO": "true", 
+                "SnapshotId": "snap-0c983e404ecbf2e36", 
+                "Size": 64
+            }
+        }, 
+        "TestInstance1": {
+            "Type": "AWS::EC2::Instance", 
+            "Properties": {
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "", 
+                            [
+                                "#!/bin/bash -v\n", 
+                                "sudo yum install -y java-1.7.0-openjdk\n", 
+                                "sudo mkdir /application\n", 
+                                "sudo mount /dev/xvdb /application\n", 
+                                "echo '/dev/xvdb /application auto defaults 0 0 ' >> /etc/fstab\n", 
+                            ]
+                        ]
+                    }
+                }, 
+                "AvailabilityZone": "us-east-1c", 
+                "Tags": [
+                    {
+                        "Key": "Name", 
+                        "Value": "TestInstance1"
+                    },  
+                    {
+                        "Key": "Owner", 
+                        "Value": "vinodh2308@gmail.com"
+                    }
+                ], 
+                "IamInstanceProfile": "TestIAMInstanceProfile", 
+                "ImageId": "ami-86f46901", 
+                "KeyName": "Test", 
+                "Volumes": [
+                    {
+                        "Device": "/dev/sdb", 
+                        "VolumeId": {
+                            "Ref": "TestVolume1"
+                        }
+                    }
+                ], 
+                "SubnetId": "subnet-ba177e92", 
+                "SecurityGroupIds": [
+                    "sg-e46f3e81", 
+                    "sg-7bd24e02", 
+                    "sg-fb6f3e93", 
+                    "sg-1b6f3e75", 
+                    "sg-10ab3d76"
+                ], 
+                "InstanceType": "t2.micro"
+            }
+        }, 
+        "TestInstance2": {
+            "Type": "AWS::EC2::Instance", 
+            "Properties": {
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "", 
+                            [
+                                "#!/bin/bash -v\n", 
+                                "sudo yum install -y java-1.7.0-openjdk\n", 
+                                "sudo mkdir /application\n", 
+                                "sudo mount /dev/xvdb /application\n", 
+                                "echo '/dev/xvdb /application auto defaults 0 0 ' >> /etc/fstab\n", 
+                            ]
+                        ]
+                    }
+                }, 
+                "AvailabilityZone": "us-east-1c", 
+                "Tags": [
+                    {
+                        "Key": "Owner", 
+                        "Value": "vinodh2308@gmail.com"
+                    }, 
+                    {
+                        "Key": "Name", 
+                        "Value": "TestInstance2"
+                    }
+                ], 
+                "IamInstanceProfile": "TestIamInstanceProfile", 
+                "ImageId": "ami-86f46491", 
+                "KeyName": "TEST", 
+                "Volumes": [
+                    {
+                        "Device": "/dev/sdb", 
+                        "VolumeId": {
+                            "Ref": "TestVolume2"
+                        }
+                    }
+                ], 
+                "SubnetId": "subnet-ba177e91", 
+                "SecurityGroupIds": [
+                    "sg-e4633e80", 
+                    "sg-7bd24e12", 
+                    "sg-fb6f3e92", 
+                    "sg-1b6f3e73", 
+                    "sg-10ab3d73"
+                ], 
+                "InstanceType": "t2.micro"
+            }
+        }, 
+        "TestVolume2": {
+            "Type": "AWS::EC2::Volume", 
+            "Properties": {
+                "AvailabilityZone": "us-east-1c", 
+                "Tags": [ 
+                    {
+                        "Key": "LastAttachInstance", 
+                        "Value": "i-01c115081bb1e8822"
+                    }, 
+                    {
+                        "Key": "LastAttachTime", 
+                        "Value": "2017-05-01T15:28:41.000Z"
+                    }, 
+                    {
+                        "Key": "Name", 
+                        "Value": "TestVolume2"
+                    }, 
+                    {
+                        "Key": "Owner", 
+                        "Value": "vinodh2308@gmail.com"
+                    }
+                ], 
+                "VolumeType": "gp2", 
+                "AutoEnableIO": "true", 
+                "SnapshotId": "snap-0e5cd4326cd00d3db", 
+                "Size": 20
+            }
+        }
+    }, 
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "bffaf61e-lbff-4691-895d-a23c21e26f78": {
+                "position": {
+                    "y": 131, 
+                    "x": 200
+                }, 
+                "z": 0, 
+                "size": {
+                    "width": 60, 
+                    "height": 60
+                }
+            }
+        }
+    }
+}
