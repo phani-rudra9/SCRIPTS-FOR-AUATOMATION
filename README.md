@@ -1,2 +1,2 @@
 # SCRIPTS-FOR-AUTOMATION
-creating automation scripts 
+creating automation scripts for AWS EC2
